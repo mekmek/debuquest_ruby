@@ -10,7 +10,13 @@ class Q6::User < Base
   end
 
   def create_user(params)
-    Q6::User.new(params)
+    case @role.to_sym
+    when :admin
+      Q6::User.new(params)
+    when :general
+      puts "※権限がありません※"
+      puts "--------------------"
+    end
   end
 
   def general!
