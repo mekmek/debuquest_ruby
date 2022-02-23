@@ -10,19 +10,25 @@ class Q6::User < Base
   end
 
   def create_user(params)
-    Q6::User.new(params)
+    case @role.to_sym
+    when :admin
+      Q6::User.new(params)
+    when :general
+      puts "※権限がありません※"
+      puts "--------------------"
+    end
   end
 
   def general!
-    role = :general
+    @role = :general
   end
 
   def admin!
-    role = :admin
+    @role = :admin
   end
 
   def grant_general_role(target_user)
-    case role.to_sym
+    case @role.to_sym
     when :admin
       target_user.general!
     when :general
@@ -32,7 +38,7 @@ class Q6::User < Base
   end
 
   def grant_admin_role(target_user)
-    case role.to_sym
+    case @role.to_sym
     when :admin
       target_user.admin!
     when :general
@@ -42,8 +48,8 @@ class Q6::User < Base
   end
 
   def disp_data
-    puts "名前: #{name}"
-    puts "権限: #{ROLE[role]}"
+    puts "名前: #{@name}"
+    puts "権限: #{ROLE[@role.to_sym]}"
     puts "--------------------"
   end
 end
