@@ -9,7 +9,8 @@ class Q7::Menu
   end
 
   def info
-    "#{name} #{price}円"
+    sub_info = @amount.nil? ? "(#{@calorie}kcal)" : "(#{@amount}mL)"
+    "#{@name} #{@price}円" + sub_info
   end
 
   def total_price(count)
