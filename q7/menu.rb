@@ -31,6 +31,7 @@ class Q7::Menu
     def is_discount_day?
       today = Date.today
       # 問題を解いている本日の曜日であればディスカウントの曜日判定になるように修正しましょう
-      false
+      # → 2022/02/24（木）なので木曜日に設定する
+      today.thursday?
     end
 end
