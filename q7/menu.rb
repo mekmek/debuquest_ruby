@@ -15,7 +15,7 @@ class Q7::Menu
 
   def total_price(count)
     total_price = price * count
-    total_price = discount_price(count)
+    total_price += discount_price(count)
     total_price
   end
 
